@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+```
+<section class="reservation-section">
+    <h2 data-key="res_title">Book a Table</h2>
+    <p data-key="res_desc">Fill in the form below to reserve your table</p>
+
+    {% if duplicate_error %}
+    <p id="duplicateError" style="color:#e74c3c; font-size:14px; margin-bottom:15px; text-align:center;">
+        ❌ <span data-key="duplicate_error">You already have a reservation on this date</span>
+    </p>
+    {% endif %}
+    <form class="reservation-form" action="/reservation" method="POST" id="reservationForm">
+
+        <div class="form-group">
+            <label data-key="res_name">Full Name</label>
+            <input type="text" name="name" id="name" data-key="res_name_ph" placeholder="Enter your name" required>
+            <span class="error" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+            <label data-key="res_phone">Phone Number</label>
+            <input type="text" name="phone" id="phone" placeholder="05xxxxxxxx" maxlength="10" required>
+            <span class="error" id="phoneError"></span>
+        </div>
+
+        <div class="form-group">
+            <label data-key="res_date">Date</label>
+            <div style="display:flex; gap:10px; direction:ltr;">
+                <select id="day" name="day" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:15px;">
+                    <option value="">Day</option>
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                    <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                    <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                    <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+                    <option>31</option>
+                </select>
+                <select id="month" name="month" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:15px;">
+                    <option value="">Month</option>
+                    <option value="1">January</option><option value="2">February</option>
+                    <option value="3">March</option><option value="4">April</option>
+                    <option value="5">May</option><option value="6">June</option>
+                    <option value="7">July</option><option value="8">August</option>
+                    <option value="9">September</option><option value="10">October</option>
+                    <option value="11">November</option><option value="12">December</option>
+                </select>
+                <select id="year" name="year" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:15px;">
+                    <option value="">Year</option>
+                    <script>
+                        const currentYear = new Date().getFullYear();
+                        for(let y = currentYear; y <= currentYear + 2; y++) {
+                            document.write('<option value="' + y + '">' + y + '</option>');
+                        }
+                    </script>
+                </select>
+            </div>
+            <span class="error" id="dateError"></span>
+        </div>
+
+        <div class="form-group">
+            <label data-key="res_guests">Number of Guests</label>
+            <select name="guests" id="guests" required>
+                <option value="" data-key="res_select">Select guests</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+            </select>
+            <span class="error" id="guestsError"></span>
+        </div>
+
+        <button type="submit" class="btn" data-key="res_btn">Confirm Reservation</button>
+    </form>
+</section>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+```
+
+</body>
+</html>

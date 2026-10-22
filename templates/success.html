@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+    <style>
+        .success-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .success-box {
+            background: white;
+            border-radius: 15px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .success-icon { font-size: 80px; margin-bottom: 20px; }
+        .success-box h2 { font-size: 28px; color: #1a1a1a; margin-bottom: 10px; }
+        .success-box > p { color: #777; margin-bottom: 8px; font-size: 15px; }
+        .booking-details {
+            background: #fff8e7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        .booking-details p { color: #333; margin-bottom: 8px; font-size: 15px; }
+        .booking-details span { font-weight: bold; color: #e4a200; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .success-box { padding: 30px 20px; }
+            .success-icon { font-size: 60px; }
+            .success-box h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <div class="success-page">
+        <div class="success-box">
+            <div class="success-icon">✅</div>
+            <h2 data-key="success_title">Booking Confirmed!</h2>
+            <p data-key="success_desc">Your table has been successfully reserved.</p>
+
+            <div class="booking-details">
+                <p>👤 <span data-key="res_name">Name</span>: <span>{{ name }}</span></p>
+                <p>📅 <span data-key="res_date">Date</span>: <span>{{ date }}</span></p>
+                <p>👥 <span data-key="res_guests">Guests</span>: <span>{{ guests }}</span></p>
+            </div>
+
+            <p data-key="success_see_you">We look forward to seeing you at Pizza Station 🍕</p>
+
+            <div class="btn-group">
+                <a href="/" class="btn">🏠 <span data-key="nav_home">Home</span></a>
+                <a href="/my_reservations" class="btn" style="background:#1a1a1a;">📋 <span data-key="nav_my_res">My Reservations</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('lang') || 'en';
+            applyLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

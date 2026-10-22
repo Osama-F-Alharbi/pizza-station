@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-K2DVY72LRQ');
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <section class="contact-section">
+        <h2 data-key="contact_title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-card">
+                    <span>📍</span>
+                    <h3 data-key="addr_title">Address</h3>
+                    <p data-key="addr_val">King Abdulaziz Road, Al Nuzha District, Jeddah 23432</p>
+                </div>
+                <div class="info-card">
+                    <span>📞</span>
+                    <h3 data-key="phone_title">Phone</h3>
+                    <p>+966 50 000 0000</p>
+                </div>
+                <div class="info-card">
+                    <span>📧</span>
+                    <h3 data-key="email_title">Email</h3>
+                    <p>info@pizzastation.example</p>
+                </div>
+                <div class="info-card">
+                    <span>🕐</span>
+                    <h3 data-key="hours_title">Opening Hours</h3>
+                    <p data-key="hours_val">Daily: 12:00 PM - 11:00 PM</p>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <form class="contact-form" method="POST" action="/contact">
+                    <div class="form-group">
+                        <label data-key="con_name">Your Name</label>
+                        <input type="text" name="name" id="contactName" data-key="con_name_ph"
+                            placeholder="Enter your name" required>
+                        <span class="error" id="contactNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label data-key="con_email">Your Email</label>
+                        <input type="email" name="email" id="contactEmail" data-key="con_email_ph"
+                            placeholder="Enter your email" required>
+                        <span class="error" id="contactEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label data-key="con_msg">Message</label>
+                        <textarea name="message" id="contactMessage" rows="5" data-key="con_msg_ph"
+                            placeholder="Write your message here" required></textarea>
+                        <span class="error" id="contactMessageError"></span>
+                    </div>
+                    <button type="submit" class="btn" data-key="con_btn">Send Message</button>
+                    <p class="success-msg" id="successMsg"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

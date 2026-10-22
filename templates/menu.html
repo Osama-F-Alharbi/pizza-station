@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <section class="menu-section">
+        <h2 data-key="menu_title">Our Menu</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-key="main_dishes" onclick="showCategory('pizza', this)">🍕 Main Dishes</button>
+            <button class="filter-btn" data-key="side_dishes" onclick="showCategory('sides', this)">🍟 Side Dishes</button>
+        </div>
+
+        <!-- Pizza Section -->
+        <div id="pizza-section">
+            <h3 class="section-title" data-key="pizza_title">🍕 Pizza</h3>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/margherita.jpeg') }}" alt="Margherita"></div>
+                    <h3 data-key="p1_name">Margherita</h3>
+                    <p data-key="p1_desc">Classic tomato sauce with melted cheese</p>
+                    <span class="price">35 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/pepperoni.jpeg') }}" alt="Pepperoni"></div>
+                    <h3 data-key="p2_name">Pepperoni</h3>
+                    <p data-key="p2_desc">Classic loaded pepperoni with melted cheese</p>
+                    <span class="price">45 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/spicy_chicken.jpeg') }}" alt="Spicy Chicken"></div>
+                    <h3 data-key="p3_name">Spicy Chicken</h3>
+                    <p data-key="p3_desc">Grilled chicken with peppers and creamy mayo drizzle</p>
+                    <span class="price">45 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/four_cheese.jpeg') }}" alt="Four Cheese"></div>
+                    <h3 data-key="p4_name">Four Cheese</h3>
+                    <p data-key="p4_desc">Rich blend of four melted cheeses</p>
+                    <span class="price">49 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/crispy_chicken.jpeg') }}" alt="Crispy Chicken"></div>
+                    <h3 data-key="p5_name">Crispy Chicken</h3>
+                    <p data-key="p5_desc">Crispy chicken chunks with caramelized onions</p>
+                    <span class="price">42 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/bbq_chicken.jpeg') }}" alt="BBQ Chicken"></div>
+                    <h3 data-key="p6_name">BBQ Chicken</h3>
+                    <p data-key="p6_desc">Tender chicken with sweet BBQ sauce drizzle</p>
+                    <span class="price">45 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/creamy_chicken.jpeg') }}" alt="Creamy Chicken"></div>
+                    <h3 data-key="p7_name">Creamy Chicken</h3>
+                    <p data-key="p7_desc">Chicken with spiral cream sauce and fresh vegetables</p>
+                    <span class="price">48 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/hawaiian.jpeg') }}" alt="Hawaiian"></div>
+                    <h3 data-key="p8_name">Hawaiian</h3>
+                    <p data-key="p8_desc">Sweet pineapple chunks with melted cheese</p>
+                    <span class="price">42 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/pepperoni_olives.jpeg') }}" alt="Pepperoni & Olives"></div>
+                    <h3 data-key="p9_name">Pepperoni & Olives</h3>
+                    <p data-key="p9_desc">Pepperoni with black olives and mushrooms</p>
+                    <span class="price">45 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/veggie_supreme.jpeg') }}" alt="Veggie Supreme"></div>
+                    <h3 data-key="p10_name">Veggie Supreme</h3>
+                    <p data-key="p10_desc">Chicken, bell peppers, and black olives</p>
+                    <span class="price">38 ر.س</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sides Section -->
+        <div id="sides-section" style="display:none;">
+            <h3 class="section-title" data-key="drinks_title">🥤 Drinks</h3>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/cola.jpeg') }}" alt="Coca-Cola"></div>
+                    <h3 data-key="d1_name">Coca-Cola</h3>
+                    <p data-key="d1_desc">Classic refreshing Coca-Cola 320ml</p>
+                    <span class="price">7 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/fanta_strawberry.jpeg') }}" alt="Fanta Strawberry"></div>
+                    <h3 data-key="d2_name">Fanta Strawberry</h3>
+                    <p data-key="d2_desc">Sweet strawberry flavored Fanta 320ml</p>
+                    <span class="price">7 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/fanta_orange.jpeg') }}" alt="Fanta Orange"></div>
+                    <h3 data-key="d3_name">Fanta Orange</h3>
+                    <p data-key="d3_desc">Classic orange flavored Fanta 320ml</p>
+                    <span class="price">7 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/sprite.jpeg') }}" alt="Sprite"></div>
+                    <h3 data-key="d4_name">Sprite</h3>
+                    <p data-key="d4_desc">Refreshing lemon-lime Sprite 320ml</p>
+                    <span class="price">7 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/sprite_mint.jpeg') }}" alt="Sprite Mint"></div>
+                    <h3 data-key="d5_name">Sprite Citrus & Mint</h3>
+                    <p data-key="d5_desc">Refreshing citrus and mint Sprite 320ml</p>
+                    <span class="price">7 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/water.jpeg') }}" alt="Water"></div>
+                    <h3 data-key="d6_name">Water</h3>
+                    <p data-key="d6_desc">Still mineral water</p>
+                    <span class="price">3 ر.س</span>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top:40px;" data-key="desserts_title">🍰 Desserts</h3>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/cookie_pizza.jpeg') }}" alt="Cookie Pizza"></div>
+                    <h3 data-key="sw1_name">Cookie Pizza</h3>
+                    <p data-key="sw1_desc">Warm chocolate chip cookie pizza</p>
+                    <span class="price">25 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/carrot_cake.jpeg') }}" alt="Carrot Cake"></div>
+                    <h3 data-key="sw2_name">Carrot Cake</h3>
+                    <p data-key="sw2_desc">Moist carrot cake with cream frosting and walnuts</p>
+                    <span class="price">22 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/strawberry_cheesecake.jpeg') }}" alt="Strawberry Cheesecake"></div>
+                    <h3 data-key="sw3_name">Strawberry Cheesecake</h3>
+                    <p data-key="sw3_desc">Creamy cheesecake with strawberry drizzle</p>
+                    <span class="price">25 ر.س</span>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img"><img src="{{ url_for('static', filename='images/caramel_cheesecake.jpeg') }}" alt="Caramel Cheesecake"></div>
+                    <h3 data-key="sw4_name">Caramel Cheesecake</h3>
+                    <p data-key="sw4_desc">Rich cheesecake with caramel and chocolate topping</p>
+                    <span class="price">25 ر.س</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+    <style>
+        .admin-section { padding: 30px 20px; max-width: 1100px; margin: 0 auto; }
+        .admin-section h2 { font-size: 24px; margin-bottom: 10px; color: #1a1a1a; }
+        .section-header {
+            font-size: 22px; margin: 40px 0 15px; color: #1a1a1a;
+            border-bottom: 2px solid #e4a200; padding-bottom: 10px;
+        }
+        .count-badge {
+            background: #e4a200; color: white; padding: 5px 15px;
+            border-radius: 20px; font-size: 14px; margin-bottom: 20px; display: inline-block;
+        }
+        .count-badge-msg {
+            background: #1a1a1a; color: white; padding: 5px 15px;
+            border-radius: 20px; font-size: 14px; margin-bottom: 20px; display: inline-block;
+        }
+        .back-btn {
+            display: inline-block; margin-bottom: 20px; background: #e4a200;
+            color: white; padding: 10px 20px; border-radius: 5px;
+            text-decoration: none; font-size: 14px;
+        }
+        .back-btn:hover { background: #c68f00; }
+        .desktop-table {
+            width: 100%; border-collapse: collapse; background: white;
+            border-radius: 10px; overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); margin-bottom: 20px;
+        }
+        .desktop-table th {
+            background: #1a1a1a; color: #e4a200; padding: 15px;
+            text-align: left; font-size: 14px;
+        }
+        .desktop-table td {
+            padding: 12px 15px; border-bottom: 1px solid #f0f0f0;
+            font-size: 14px; color: #333;
+        }
+        .desktop-table tr:hover { background: #fff8e7; }
+        .mobile-cards { display: none; }
+        .res-card-admin, .msg-card-admin {
+            background: white; border-radius: 10px; padding: 15px;
+            margin-bottom: 15px; box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        .res-card-admin { border-left: 5px solid #e4a200; }
+        .msg-card-admin { border-left: 5px solid #1a1a1a; }
+        .res-card-admin-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 10px;
+        }
+        .res-card-admin h3 { color: #e4a200; font-size: 16px; margin: 0; }
+        .msg-card-admin h3 { color: #1a1a1a; font-size: 16px; margin: 0; }
+        .res-card-admin p, .msg-card-admin p { color: #555; font-size: 14px; margin-bottom: 5px; }
+        .res-card-admin span, .msg-card-admin span { font-weight: bold; color: #1a1a1a; }
+        .msg-text {
+            background: #f9f9f9; padding: 10px; border-radius: 5px;
+            margin-top: 8px; font-size: 14px; color: #333; line-height: 1.6;
+        }
+        .delete-btn {
+            background: #e74c3c; color: white; border: none; padding: 8px 16px;
+            border-radius: 5px; cursor: pointer; font-size: 13px;
+            text-decoration: none; transition: background 0.3s; white-space: nowrap;
+        }
+        .delete-btn:hover { background: #c0392b; }
+        .empty-msg {
+            text-align: center; padding: 30px; color: #777; font-size: 15px;
+            background: white; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .desktop-table { display: none; }
+            .mobile-cards { display: block; }
+            .admin-section { padding: 20px 15px; }
+            .admin-section h2 { font-size: 20px; }
+            .section-header { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station — Admin</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/admin/logout" style="background:#e74c3c; color:white; padding:8px 16px; border-radius:6px; text-decoration:none; font-size:14px;">🔓 Logout</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <div class="admin-section">
+
+        <!-- Reservations -->
+        <h2>📋 <span data-key="admin_title">Reservations Dashboard</span></h2>
+        <div class="count-badge">
+            <span data-key="admin_total">Total</span>: {{ reservations|length }} <span data-key="admin_res">reservations</span>
+        </div>
+        <br>
+        <a href="/" class="back-btn">🏠 <span data-key="nav_home">Home</span></a>
+
+        {% if reservations %}
+        <table class="desktop-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th data-key="res_name">Name</th>
+                    <th data-key="res_phone">Phone</th>
+                    <th data-key="res_date">Date</th>
+                    <th data-key="res_guests">Guests</th>
+                    <th data-key="admin_action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in reservations %}
+                <tr>
+                    <td>{{ r[0] }}</td>
+                    <td>{{ r[1] }}</td>
+                    <td>{{ r[2] }}</td>
+                    <td>{{ r[3] }}</td>
+                    <td>{{ r[4] }}</td>
+                    <td>
+                        <a href="/admin/delete/{{ r[0] }}" class="delete-btn"
+                           onclick="return confirm('Delete this reservation?')">
+                           🗑 <span data-key="my_res_delete">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mobile-cards">
+            {% for r in reservations %}
+            <div class="res-card-admin">
+                <div class="res-card-admin-header">
+                    <h3>🍕 #{{ r[0] }}</h3>
+                    <a href="/admin/delete/{{ r[0] }}" class="delete-btn"
+                       onclick="return confirm('Delete?')">🗑 Delete</a>
+                </div>
+                <p>👤 Name: <span>{{ r[1] }}</span></p>
+                <p>📞 Phone: <span>{{ r[2] }}</span></p>
+                <p>📅 Date: <span>{{ r[3] }}</span></p>
+                <p>👥 Guests: <span>{{ r[4] }}</span></p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-msg">📭 <span data-key="admin_empty">No reservations yet</span></div>
+        {% endif %}
+
+        <!-- Messages -->
+        <h2 class="section-header">📧 Messages</h2>
+        <div class="count-badge-msg">Total: {{ messages|length }} messages</div>
+
+        {% if messages %}
+        <table class="desktop-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in messages %}
+                <tr>
+                    <td>{{ m[0] }}</td>
+                    <td>{{ m[1] }}</td>
+                    <td>{{ m[2] }}</td>
+                    <td>{{ m[3][:50] }}...</td>
+                    <td>{{ m[4] }}</td>
+                    <td>
+                        <a href="/admin/delete_message/{{ m[0] }}" class="delete-btn"
+                           onclick="return confirm('Delete this message?')">🗑 Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mobile-cards">
+            {% for m in messages %}
+            <div class="msg-card-admin">
+                <div class="res-card-admin-header">
+                    <h3>📧 #{{ m[0] }}</h3>
+                    <a href="/admin/delete_message/{{ m[0] }}" class="delete-btn"
+                       onclick="return confirm('Delete?')">🗑 Delete</a>
+                </div>
+                <p>👤 Name: <span>{{ m[1] }}</span></p>
+                <p>📧 Email: <span>{{ m[2] }}</span></p>
+                <p>📅 Date: <span>{{ m[4] }}</span></p>
+                <div class="msg-text">💬 {{ m[3] }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-msg">📭 No messages yet</div>
+        {% endif %}
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

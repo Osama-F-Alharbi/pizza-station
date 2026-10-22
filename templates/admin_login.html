@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .login-box .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .login-box p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border 0.2s;
+        }
+        .login-box input[type="password"]:focus {
+            border-color: #e4a200;
+            outline: none;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background: #e4a200;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .login-box button:hover { background: #c68f00; }
+        .error-msg {
+            background: #fdecea;
+            color: #c0392b;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: block;
+            margin-top: 18px;
+            color: #aaa;
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #e4a200; }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <div class="logo">🍕 Pizza Station</div>
+            <p>Admin Panel — Enter password to continue</p>
+
+            {% if error %}
+            <div class="error-msg">❌ {{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <input type="password" name="password" placeholder="Enter admin password" autofocus required>
+                <button type="submit">🔐 Login</button>
+            </form>
+
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

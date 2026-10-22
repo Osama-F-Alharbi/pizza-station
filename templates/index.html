@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-key="hero_title">Welcome to Pizza Station</h1>
+            <p data-key="hero_subtitle">Experience the finest pizza in town</p>
+            <a href="/menu" class="btn" data-key="hero_menu_btn">View Menu</a>
+            <a href="/reservation" class="btn btn-outline" data-key="hero_book_btn">Book a Table</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <span>🍕</span>
+            <h3 data-key="feat1_title">Fresh Pizza</h3>
+            <p data-key="feat1_desc">Made with the freshest ingredients daily</p>
+        </div>
+        <div class="feature-card">
+            <span>👨‍🍳</span>
+            <h3 data-key="feat2_title">Expert Chefs</h3>
+            <p data-key="feat2_desc">Our chefs have years of experience</p>
+        </div>
+        <div class="feature-card">
+            <span>🌟</span>
+            <h3 data-key="feat3_title">Best Quality</h3>
+            <p data-key="feat3_desc">We serve only the best quality meals</p>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <h2 data-key="popular_title">Our Popular Pizzas</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img"><img src="{{ url_for('static', filename='images/margherita.jpeg') }}" alt="Margherita"></div>
+                <h3 data-key="p1_name">Margherita</h3>
+                <p data-key="p1_desc">Classic tomato sauce with melted cheese</p>
+                <span class="price">35 ر.س</span>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="{{ url_for('static', filename='images/pepperoni.jpeg') }}" alt="Pepperoni"></div>
+                <h3 data-key="p2_name">Pepperoni</h3>
+                <p data-key="p2_desc">Classic loaded pepperoni with melted cheese</p>
+                <span class="price">45 ر.س</span>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="{{ url_for('static', filename='images/bbq_chicken.jpeg') }}" alt="BBQ Chicken"></div>
+                <h3 data-key="p6_name">BBQ Chicken</h3>
+                <p data-key="p6_desc">Tender chicken with sweet BBQ sauce drizzle</p>
+                <span class="price">45 ر.س</span>
+            </div>
+        </div>
+        <a href="/menu" class="btn" style="margin-top:30px; display:inline-block;" data-key="view_full_menu">View Full Menu</a>
+    </section>
+
+    <section class="reservation-section" style="background:#1a1a1a; color:white;">
+        <h2 style="color:white;" data-key="reserve_title">Reserve Your Table</h2>
+        <p style="color:#ddd; margin-bottom:20px;" data-key="reserve_desc">Book your table now and enjoy a special pizza experience</p>
+        <a href="/reservation" class="btn" data-key="reserve_btn">Book Now 🍕</a>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Pizza Station</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2DVY72LRQ');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🍕 Pizza Station</div>
+        <ul class="nav-links">
+            <li><a href="/" data-key="nav_home">Home</a></li>
+            <li><a href="/menu" data-key="nav_menu">Menu</a></li>
+            <li><a href="/reservation" data-key="nav_reservation">Reservation</a></li>
+            <li><a href="/about" data-key="nav_about">About</a></li>
+            <li><a href="/contact" data-key="nav_contact">Contact</a></li>
+            <li><a href="/my_reservations" data-key="nav_my_res">My Reservations</a></li>
+            <li><button id="langBtn" onclick="toggleLanguage()" class="lang-btn">🌐 العربية</button></li>
+        </ul>
+    </nav>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2 data-key="about_title">About Us</h2>
+            <p data-key="about_p1">Welcome to Pizza Station, where we bring you the finest pizza experience. Our restaurant was founded in 2010 with a passion for great food and exceptional service.</p>
+            <p data-key="about_p2">We use only the freshest ingredients sourced locally to create pizzas that delight your taste buds.</p>
+        </div>
+
+        <div class="about-stats">
+            <div class="stat-card"><h3>15+</h3><p data-key="stat1">Years of Experience</p></div>
+            <div class="stat-card"><h3>15+</h3><p data-key="stat2">Menu Items</p></div>
+            <div class="stat-card"><h3>10k+</h3><p data-key="stat3">Happy Customers</p></div>
+            <div class="stat-card"><h3>20+</h3><p data-key="stat4">Expert Chefs</p></div>
+        </div>
+
+        <div class="team-section">
+            <h2 data-key="team_title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card"><div class="team-img">👨‍🍳</div><h3>Chef Ahmed</h3><p data-key="chef1">Head Chef</p></div>
+                <div class="team-card"><div class="team-img">👩‍🍳</div><h3>Chef Sara</h3><p data-key="chef2">Pastry Chef</p></div>
+                <div class="team-card"><div class="team-img">👨‍🍳</div><h3>Chef Omar</h3><p data-key="chef3">Pizza Master</p></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
