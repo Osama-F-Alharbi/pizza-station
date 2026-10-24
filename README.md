@@ -5,7 +5,7 @@ A bilingual (Arabic / English) restaurant website where customers can browse the
 **Live demo:** https://pizza-station-unzn.onrender.com
 *(Free hosting: the first visit after a quiet period can take up to a minute to wake the server.)*
 
-Group project for the **Web Data Analysis** course at Umm Al-Qura University. I did the technical work: building, deploying, and tracking the site.
+Group project for the **Web Data Analysis** course at Umm Al-Qura University. I did the technical and analytics work: building and deploying the site, setting up Google Analytics 4, and analyzing the visitor data behind the course report.
 
 ![Home page](docs/screenshots/home.png)
 
