@@ -56,6 +56,8 @@ The site ran for about three weeks with real visitors, most of them classmates. 
 - 87% of visitors used a mobile device, which led to mobile layout improvements.
 - The final report gave 7 data-based recommendations.
 
+📄 Short summary I wrote myself from the GA4 data: [analytics-summary.pdf](docs/analytics-summary.pdf)
+
 ## Security
 
 Things this project does on purpose:
@@ -125,6 +127,7 @@ This was a group course project. I did the technical work, and I built it with t
 
 - **With AI help:** the website code and the written analytics report.
 - **My own work:** planning the features and pages, deploying the site on Render with a Supabase database, setting up Google Analytics 4, and reading the GA4 data myself to understand the results behind the report.
+- **Written by me:** the short analytics summary in `docs/analytics-summary.pdf`.
 - **Security clean-up I did by hand:** removed hard-coded passwords from the code, turned off debug mode, moved database setup so it runs once at startup, rotated every leaked secret, and moved the project to a clean repository with no secrets in its history.
 
 The later improvements (reservation codes, server-side checks, admin hardening) were also written with AI help, and I reviewed and tested each one on the live site.
