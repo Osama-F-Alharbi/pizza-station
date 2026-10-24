@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmed - Pizza Station</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2DVY72LRQ"></script>
@@ -42,6 +43,15 @@
         }
         .booking-details p { color: #333; margin-bottom: 8px; font-size: 15px; }
         .booking-details span { font-weight: bold; color: #e4a200; }
+        .code-box {
+            background: #1a1a1a;
+            color: #e4a200;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0 20px;
+        }
+        .code-box strong { display: block; font-size: 30px; letter-spacing: 4px; margin-top: 5px; }
+        .code-note { color: #777; font-size: 13px; margin-bottom: 15px; }
         .btn-group {
             display: flex;
             gap: 10px;
@@ -81,6 +91,12 @@
                 <p>📅 <span data-key="res_date">Date</span>: <span>{{ date }}</span></p>
                 <p>👥 <span data-key="res_guests">Guests</span>: <span>{{ guests }}</span></p>
             </div>
+
+            <div class="code-box">
+                <span data-key="success_code_label">Your reservation code</span>
+                <strong>{{ code }}</strong>
+            </div>
+            <p class="code-note" data-key="success_code_note">Save this code. You need it to view or cancel your reservation.</p>
 
             <p data-key="success_see_you">We look forward to seeing you at Pizza Station 🍕</p>
 
