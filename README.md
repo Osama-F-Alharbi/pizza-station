@@ -105,7 +105,9 @@ pizza-station/
 │   ├── script.js           # Translations, form checks, GA4 events
 │   ├── favicon.svg
 │   └── images/
-├── docs/screenshots/
+├── docs/
+│   ├── analytics-summary.pdf
+│   └── screenshots/
 └── .github/workflows/
     └── keep-alive.yml      # Visits /health every 3 days
 ```
